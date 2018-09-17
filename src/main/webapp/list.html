@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function() {
+            var vdefault = $('#money').val();
+
+            $('#money').focus(function() {
+                //获得焦点时，如果值为默认值，则设置为空
+                if ($(this).val() == vdefault) {
+                    $(this).val("");
+                }
+            });
+            $('#money').blur(function() {
+                //失去焦点时，如果值为空，则设置为默认值
+                if ($(this).val()== "") {
+                    $(this).val(vdefault); ;
+                }
+            });
+        });
+
+        function submitData(){
+
+
+            $.post("/student/add",
+                {
+                    name:$("#name").val(),
+                    age:$("#age").val(),
+                    money:$("#money").val()
+                },
+                function(result){
+                    if (result == "success") {
+                        window.location.href = '/student/list';
+                    }
+                    alert(result); // John
+                }
+            );
+        }
+
+
+    </script>
+</head>
+<body>
+<form action="/student/add" method="post" id="addstudent">
+<table>
+    <tr>
+        <td>姓名：<input type="text" name="name" id="name" /></td>
+    </tr>
+    <tr>
+        <td>年龄：<input type="text" name="age" id="age" /></td>
+    </tr>
+    <tr>
+        <td>存款：<input type="text" name="money" id="money" value="0" /></td>
+    </tr>
+    <tr>
+        <td><input type="button" onclick="submitData()" value="提交" /></td>
+    </tr>
+</table>
+</form>
+</body>
+</html>
