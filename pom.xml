@@ -59,6 +59,17 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+         
+         <repositories>
+		<repository>
+			<id>public</id>
+			<name>aliyun nexus</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
 
     <build>
         <plugins>
